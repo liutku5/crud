@@ -3,25 +3,27 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
+    public static ArrayList<String> movieList;
+    public static Scanner sc;
     public static void main(String[] args) {
-        ArrayList<String> movielist = new ArrayList();
-        Scanner sc = new Scanner(System.in);
+        movieList = new ArrayList();
+        sc = new Scanner(System.in);
         while (true) {
             printInfoMessege();
             int movie = intInput(sc);
             sc.nextLine();
             switch (movie) {
                 case 1:
-                    addMovie(movielist, sc);
+                    addMovie();
                     break;
                 case 2:
-                    printMovies(movielist);
+                    printMovies();
                     break;
                 case 3:
-                    changeMovie(movielist, sc);
+                    changeMovie();
                     break;
                 case 4:
-                    removeMovie(movielist, sc);
+                    removeMovie();
                     break;
                 case 5:
                     System.exit(1);
@@ -42,45 +44,45 @@ public class Main {
         System.out.println();
     }
 
-    public static void addMovie(ArrayList<String> movielist, Scanner sc) {
-        printMovies(movielist);
+    public static void addMovie() {
+        printMovies();
         System.out.println("Enter movie name.");
         String movieInput = sc.nextLine();
-        if (!movielist.contains(movieInput)) {
-            movielist.add(movieInput);
+        if (!movieList.contains(movieInput)) {
+            movieList.add(movieInput);
             System.out.println("The movie " + movieInput + " was added to the list.");
         } else {
             System.out.println("The movie name already exist.");
         }
     }
 
-    public static void printMovies(ArrayList<String> movielist) {
-        for (int i = 0; i < movielist.size(); i++) {
-            System.out.println((i + 1) + ". " + movielist.get(i));
+    public static void printMovies() {
+        for (int i = 0; i < movieList.size(); i++) {
+            System.out.println((i + 1) + ". " + movieList.get(i));
         }
     }
 
-    public static void changeMovie(ArrayList<String> movielist, Scanner sc) {
-        printMovies(movielist);
+    public static void changeMovie() {
+        printMovies();
         System.out.println("Enter the movie name you wish to change.");
         String oldMovie = sc.nextLine();
-        if (movielist.contains(oldMovie)) {
+        if (movieList.contains(oldMovie)) {
             System.out.println("Enter new movie name.");
             String newMovie = sc.nextLine();
-            int choice = movielist.indexOf(oldMovie);
-            movielist.set(choice, newMovie);
+            int choice = movieList.indexOf(oldMovie);
+            movieList.set(choice, newMovie);
             System.out.println("The movie " + oldMovie + " was changed to " + newMovie);
         } else {
             System.out.println("There is no such movie in the list.");
         }
     }
 
-    public static void removeMovie(ArrayList<String> movielist, Scanner sc) {
-        printMovies(movielist);
+    public static void removeMovie() {
+        printMovies();
         System.out.println("Enter movies name you wish to remove.");
         String movieName = sc.nextLine();
-        if (movielist.contains(movieName)) {
-            movielist.remove(movieName);
+        if (movieList.contains(movieName)) {
+            movieList.remove(movieName);
             System.out.println("The movie " + movieName + " was removed from the list.");
         } else {
             System.out.println("There is no such movie in the list.");
