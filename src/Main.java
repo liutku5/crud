@@ -14,11 +14,11 @@ public class Main {
         while (true){
             System.out.println();
             System.out.println("--------------------------");
-            System.out.println("1. enter movie name");
-            System.out.println("2. show movie list");
-            System.out.println("3. edit movie list");
-            System.out.println("4. remove movie from the list");
-            System.out.println("5. close program");
+            System.out.println("1. Enter movie name");
+            System.out.println("2. Show movie list");
+            System.out.println("3. Edit movie list");
+            System.out.println("4. Remove movie from the list");
+            System.out.println("5. Close program");
             System.out.println("--------------------------");
             System.out.println();
             int movie = sc.nextInt();
@@ -34,19 +34,33 @@ public class Main {
                         System.out.println(movielist.get(i));
                     }
                     break;
+                case 3:
+                    System.out.println(movielist);
+                    String oldMovie = sc.nextLine();
+                    if(movielist.contains(oldMovie)){
+                        System.out.println("Enter new movies name.");
+                        String newMovie = sc.nextLine();
+                        int choice = movielist.indexOf(oldMovie);
+                        movielist.set(choice, newMovie);
+                        System.out.println("The movie " + oldMovie + "was changed to " + newMovie);
+                    }else {
+                        System.out.println("There is no such movie in the list.");
+                    }
+
                 case 4:
-//                    System.out.println("Enter movies name you wish to remove.");
-//                    String input = sc.nextLine();
-//                    movielist.remove();
-//                    break;
+                    System.out.println(movielist);
+                    System.out.println("Enter movies name you wish to remove.");
+                    String movieName = sc.nextLine();
+                    if (movielist.contains(movieName)){
+                        movielist.remove(movieName);
+                    }else {
+                        System.out.println("There is no such movie in the list.");
+                    }
+                    break;
                 case 5:
                     System.exit(1);
                 default:
                     System.out.println("Wrongly entered number");
-
-
-
-
             }
         }
 
