@@ -6,13 +6,9 @@ public class Main {
     public static void main(String[] args) {
         ArrayList<String> movielist = new ArrayList();
         Scanner sc = new Scanner(System.in);
-        movielist.add("The Matrix");
-        movielist.add("Gladiator");
-        movielist.add("Assassin's Creed");
-        movielist.add("X-Men: Days of Future Past");
         while (true) {
             printInfoMessege();
-            int movie = sc.nextInt();
+            int movie = intInput(sc);
             sc.nextLine();
             switch (movie) {
                 case 1:
@@ -29,8 +25,6 @@ public class Main {
                     break;
                 case 5:
                     System.exit(1);
-                default:
-                    System.out.println("Wrongly entered choice");
             }
         }
 
@@ -49,12 +43,12 @@ public class Main {
     }
 
     public static void addMovie(ArrayList<String> movielist, Scanner sc) {
-        System.out.println(movielist);
+        printMovies(movielist);
         System.out.println("Enter movie name.");
-        String movieinput = sc.nextLine();
-        if (!movielist.contains(movieinput)) {
-            movielist.add(movieinput);
-            System.out.println("The movie " + movieinput + " was added to the list.");
+        String movieInput = sc.nextLine();
+        if (!movielist.contains(movieInput)) {
+            movielist.add(movieInput);
+            System.out.println("The movie " + movieInput + " was added to the list.");
         } else {
             System.out.println("The movie name already exist.");
         }
@@ -62,12 +56,12 @@ public class Main {
 
     public static void printMovies(ArrayList<String> movielist) {
         for (int i = 0; i < movielist.size(); i++) {
-            System.out.println(movielist.get(i));
+            System.out.println((i + 1) + ". " + movielist.get(i));
         }
     }
 
     public static void changeMovie(ArrayList<String> movielist, Scanner sc) {
-        System.out.println(movielist);
+        printMovies(movielist);
         System.out.println("Enter the movie name you wish to change.");
         String oldMovie = sc.nextLine();
         if (movielist.contains(oldMovie)) {
@@ -82,7 +76,7 @@ public class Main {
     }
 
     public static void removeMovie(ArrayList<String> movielist, Scanner sc) {
-        System.out.println(movielist);
+        printMovies(movielist);
         System.out.println("Enter movies name you wish to remove.");
         String movieName = sc.nextLine();
         if (movielist.contains(movieName)) {
